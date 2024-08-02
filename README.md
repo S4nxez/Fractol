@@ -1,14 +1,26 @@
-# Fractol - Menger Sponge 3D Simulation
+# Fractol - Campus42
 
 ## Descripción
 
-Este proyecto es una simulación en 3D de la **Menger Sponge** utilizando la librería gráfica **MiniLibX**. La Menger Sponge es un fractal tridimensional, una extensión del conjunto de Cantor y el triángulo de Sierpinski en tres dimensiones. Este proyecto forma parte del currículo de Campus 42 y tiene como objetivo explorar y visualizar fractales complejos.
+
+
+Este proyecto consiste en la simulación y visualización de fractales matemáticos, incluyendo el **conjunto de Mandelbrot** y el **conjunto de Julia**. Desarrollado en C, el programa utiliza la biblioteca gráfica **MiniLibX**, una herramienta creada internamente en el campus 42 para ayudar a los estudiantes a comprender mejor la programación gráfica y el manejo de eventos en entornos gráficos.
 
 ## Características
+ - Renderiza fractales complejos con una interfaz gráfica interactiva.
+ - Permite la exploración y el zoom en áreas específicas de los
+ fractales.
+ - Implementa controles para ajustar parámetros y visualizar variaciones.
 
-- **Visualización 3D**: Renderizado en tiempo real de la Menger Sponge en un entorno 3D.
-- **Interactividad**: Permite cerrar la ventana con la tecla Escape y manejar eventos de la ventana.
-- **MiniLibX**: Uso de la librería gráfica MiniLibX para la creación y manipulación de ventanas y gráficos.
+## Capturas de pantalla
+
+ - **Primer planteamiento del conjunto de Mandelbrot:**
+
+	<img src="screenshots/mendelbrot_first_approach.png" alt="Fractal Mandelbrot" width="350">
+
+ - **Intento fallido de Esponja de Menger en 3d:**
+
+	<img src="screenshots/Menger_3d_try.png" alt="Esponja de Menger" width="350">
 
 ## Requisitos
 
