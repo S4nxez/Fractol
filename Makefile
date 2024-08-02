@@ -1,5 +1,5 @@
 # Name of the executable
-NAME = Menger
+NAME = fractol
 
 # Compiler
 CC = gcc
@@ -13,7 +13,7 @@ MLX = $(MLX_DIR)/libmlx.a
 
 # Source files
 #SRCS = main.c menger_sponge.c window_settings.c
-SRCS = mandelbrot.c
+SRCS = mandelbrot.c main.c
 
 # Object files
 OBJS = $(SRCS:.c=.o)
