@@ -12,8 +12,7 @@ MLX_DIR = /home/s4nxez/minilibx_linux
 MLX = $(MLX_DIR)/libmlx.a
 
 # Source files
-#SRCS = main.c menger_sponge.c window_settings.c
-SRCS = mandelbrot.c main.c
+SRCS = mandelbrot.c window_settings.c main.c
 
 # Object files
 OBJS = $(SRCS:.c=.o)
