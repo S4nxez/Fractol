@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:49:43 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/04 20:33:42 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/05 23:58:13 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <X11/X.h>
 #include <X11/keysym.h>
 
-void	iterate_screen(void *ptr, void *wn, void (*f)(void *, void *, int, int))
+void	iterate_screen(t_data *data, void (*f)(t_data *data, int, int))
 {
 	int	x;
 	int	y;
@@ -26,7 +26,7 @@ void	iterate_screen(void *ptr, void *wn, void (*f)(void *, void *, int, int))
 		y = 0;
 		while (y < HEIGHT)
 		{
-			f(ptr, wn, x, y);
+			f(data, x, y);
 			y++;
 		}
 		x++;
@@ -35,17 +35,21 @@ void	iterate_screen(void *ptr, void *wn, void (*f)(void *, void *, int, int))
 
 int	main(void)
 {
-	t_data	data;
+	t_data	*dat;
 
-	data.mlx_ptr = mlx_init();
-	if (data.mlx_ptr == NULL)
+	dat = (t_data *)malloc(sizeof(t_data));
+	if (dat == NULL)
 		return (1);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WIDTH, HEIGHT, "Fracto'l");
-	if (data.win_ptr == NULL)
+	dat->mlx_ptr = mlx_init();
+	if (dat->mlx_ptr == NULL)
 		return (1);
-	iterate_screen(data.mlx_ptr, data.win_ptr, draw_mandelbrot);
-	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &on_keypress, &data);
-	mlx_hook(data.win_ptr, DestroyNotify, NoEventMask, &close_on_escape, &data);
-	mlx_loop(data.mlx_ptr);
+	dat->win_ptr = mlx_new_window(dat->mlx_ptr, WIDTH, HEIGHT, "Fracto'l");
+	if (dat->win_ptr == NULL)
+		return (1);
+	dat->func = draw_mandelbrot;
+	iterate_screen(dat, draw_mandelbrot);
+	mlx_hook(dat->win_ptr, KeyRelease, KeyReleaseMask, on_keypress, dat);
+	mlx_hook(dat->win_ptr, DestroyNotify, NoEventMask, close_on_escape, dat);
+	mlx_loop(dat->mlx_ptr);
 	return (0);
 }
