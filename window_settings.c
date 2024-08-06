@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 22:04:00 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/05 23:53:07 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/06 11:46:14 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int	close_on_escape(t_data *data)
 
 int	on_keypress(int keysym, t_data *data1)
 {
-	t_data	*data = (t_data *)data1;
+	t_data	*data;
 
+	data = (t_data *)data1;
 	if (keysym == 65307)
 	{
 		close_on_escape(data);
