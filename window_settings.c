@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 22:04:00 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/06 11:46:14 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/08 21:40:47 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,22 @@ int	close_on_escape(t_data *data)
 	free(data->mlx_ptr);
 	exit(0);
 	return (0);
+}
+
+void	input_translation(int keysym, t_data *data)
+{
+	if (keysym == 'w')
+		data->pos.y -= data->pos.zoom * 0.1;
+	else if (keysym == 's')
+		data->pos.y += data->pos.zoom * 0.1;
+	else if (keysym == 'a')
+		data->pos.x -= data->pos.zoom * 0.1;
+	else if (keysym == 'd')
+		data->pos.x += data->pos.zoom * 0.1;
+	else if (keysym == '+')
+		data->pos.zoom *= 0.9;
+	else if (keysym == '-')
+		data->pos.zoom /= 0.9;
 }
 
 int	on_keypress(int keysym, t_data *data1)
@@ -42,6 +58,7 @@ int	on_keypress(int keysym, t_data *data1)
 			data->input[data->input_len] = '\0';
 			printf("Pressed key: %d\n", keysym);
 			fflush(stdout);
+			input_translation(keysym, data);
 			iterate_screen(data, data->func);
 		}
 	}
