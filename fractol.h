@@ -6,24 +6,33 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:12 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/05 23:50:40 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/08 21:41:03 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 # include <stdlib.h>
+# include <math.h>
 
-# define WIDTH	600
-# define HEIGHT	600
+# define WIDTH	1000
+# define HEIGHT 1000
+
+typedef struct pos
+{
+	double	x;
+	double	y;
+	double	zoom;
+}	t_position;
 
 typedef struct s_data
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	char	input[256];
-	int		input_len;
-	void	(*func)(struct s_data *, int, int);
+	void		*mlx_ptr;
+	void		*win_ptr;
+	char		input[256];
+	int			input_len;
+	void		(*func)(struct s_data *, int, int);
+	t_position	pos;
 }	t_data;
 
 void	draw_mandelbrot(t_data *data, int x, int y);

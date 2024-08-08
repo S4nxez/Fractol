@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:49:43 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/06 11:22:30 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/08 21:32:01 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ int	main(void)
 	if (dat->win_ptr == NULL)
 		return (1);
 	dat->func = draw_mandelbrot;
-	iterate_screen(dat, draw_mandelbrot);
+	dat->pos.x = 0;
+	dat->pos.y = 0;
+	dat->pos.zoom = 2.5;
+	iterate_screen(dat, dat->func);
 	mlx_hook(dat->win_ptr, KeyRelease, KeyReleaseMask, on_keypress, dat);
 	mlx_hook(dat->win_ptr, DestroyNotify, NoEventMask, close_on_escape, dat);
 	mlx_loop(dat->mlx_ptr);
