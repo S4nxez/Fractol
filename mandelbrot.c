@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:31:55 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/08 21:41:51 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/09 16:35:54 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,24 @@ double	map(double ratio, double b1, double b2)
 	return (b1 + ratio * (b2 - b1));
 }
 
-int	calc_mandelbrot_iterations(double *a, double *b, double ca, double cb)
+int	calc_mandelbrot_iterations(double *zr, double *zi, double cr, double ci)
 {
-	double	aa;
-	double	bb;
-	int		n;
+	double	tmp;
+	int		i;
 
-	n = 0;
-	while (n < 100)
+	i = 0;
+	*zr = 0;
+	*zi = 0;
+	while (i < 100)
 	{
-		aa = (*a) * (*a) - (*b) * (*b);
-		bb = 2 * (*a) * (*b);
-		*a = aa + ca;
-		*b = bb + cb;
-		if (fabs(*a + *b) > 16)
+		if ((*zr * *zr + *zi * *zi) > 16.0)
 			break ;
-		n++;
+		tmp = 2 * (*zr) * (*zi) + ci;
+		*zr = (*zr * *zr - *zi * *zi) + cr;
+		*zi = tmp;
+		i++;
 	}
-	return (n);
+	return (i);
 }
 
 void	draw_mandelbrot(t_data *data, int x, int y)

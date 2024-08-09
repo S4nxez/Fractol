@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:12 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/08 21:41:03 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/09 21:38:46 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # include <stdlib.h>
 # include <math.h>
 
-# define WIDTH	1000
-# define HEIGHT 1000
+# define WIDTH	800
+# define HEIGHT 800
 
 typedef struct pos
 {
