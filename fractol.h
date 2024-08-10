@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:12 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/09 21:38:46 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/10 22:02:49 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ typedef struct pos
 	double	zoom;
 }	t_position;
 
+typedef struct s_img
+{
+	void	*img;
+	char	*pix;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+
 typedef struct s_data
 {
 	void		*mlx_ptr;
@@ -33,10 +42,14 @@ typedef struct s_data
 	int			input_len;
 	void		(*func)(struct s_data *, int, int);
 	t_position	pos;
+	t_img		img;
 }	t_data;
 
 void	draw_mandelbrot(t_data *data, int x, int y);
 int		on_keypress(int keysym, t_data *data1);
 int		close_on_escape(t_data *data);
 void	iterate_screen(t_data *data, void (*f)(t_data *, int, int));
+void	ft_put_pixel(t_img img, int x, int y, int color);
+void	ft_render(t_data *d);
+
 #endif
