@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 22:04:00 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/08 21:40:47 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/11 16:01:27 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	on_keypress(int keysym, t_data *data1)
 			fflush(stdout);
 			input_translation(keysym, data);
 			iterate_screen(data, data->func);
+			ft_render(data);
 		}
 	}
 	return (keysym);

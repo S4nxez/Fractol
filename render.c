@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 21:54:30 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/10 22:03:44 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/11 16:00:24 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,10 @@ void	ft_render(t_data *d)
 	{
 		x = -1;
 		while (++x < WIDTH)
-			ft_select_set(d, x, y);
+			draw_mandelbrot(d, x, y);
 	}
 	mlx_put_image_to_window(d->mlx_ptr, d->win_ptr, d->img.img, 0, 0);
-	ft_render_ui(d);
 	return ;
-}
-static void	ft_set_range(t_data *d, t_complex *c, int x, int y)
-{
-	c->r = (ft_map(x, d->win_size, d->cc_range) * d->zoom) + d->x_offset;
-	d->cc_range.min = -2.0;
-	d->cc_range.max = 2.0;
-	c->i = (ft_map(y, d->win_size, d->cc_range) * d->zoom) + d->y_offset;
 }
 
 /*	ft_put_pixel : Puts a pixel to the data array of an image.

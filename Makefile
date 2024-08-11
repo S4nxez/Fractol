@@ -5,7 +5,7 @@ NAME = fractol
 CC = gcc
 
 # Compiler flags
-CFLAGS = -Wall -Wextra -Werror -I$(MLX_DIR)
+CFLAGS = -Wall -Wextra -Werror -g -I$(MLX_DIR)
 
 # MiniLibX library path
 MLX_DIR = /home/s4nxez/minilibx_linux
