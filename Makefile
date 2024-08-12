@@ -5,14 +5,14 @@ NAME = fractol
 CC = gcc
 
 # Compiler flags
-CFLAGS = -Wall -Wextra -Werror -I$(MLX_DIR)
+CFLAGS = -Wall -Wextra -Werror -g -I$(MLX_DIR)
 
 # MiniLibX library path
 MLX_DIR = /home/s4nxez/minilibx_linux
 MLX = $(MLX_DIR)/libmlx.a
 
 # Source files
-SRCS = mandelbrot.c window_settings.c main.c
+SRCS = mandelbrot.c window_settings.c render.c main.c
 
 # Object files
 OBJS = $(SRCS:.c=.o)

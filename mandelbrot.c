@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:31:55 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/09 16:35:54 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/12 17:10:50 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,5 @@ void	draw_mandelbrot(t_data *data, int x, int y)
 	cb = b;
 	bright = map(calculate_ratio(calc_mandelbrot_iterations(&a, &b, ca, cb),
 				0, 100), 0, 0x00FF00);
-	mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, bright);
+	ft_put_pixel(data->img, x, y, bright);
 }
