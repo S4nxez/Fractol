@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 22:04:00 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/11 16:01:27 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/12 17:17:58 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ int	close_on_escape(t_data *data)
 void	input_translation(int keysym, t_data *data)
 {
 	if (keysym == 'w')
-		data->pos.y -= data->pos.zoom * 0.1;
+		data->pos.y -= data->pos.zoom * 0.2;
 	else if (keysym == 's')
-		data->pos.y += data->pos.zoom * 0.1;
+		data->pos.y += data->pos.zoom * 0.2;
 	else if (keysym == 'a')
-		data->pos.x -= data->pos.zoom * 0.1;
+		data->pos.x -= data->pos.zoom * 0.2;
 	else if (keysym == 'd')
-		data->pos.x += data->pos.zoom * 0.1;
+		data->pos.x += data->pos.zoom * 0.2;
 	else if (keysym == '+')
-		data->pos.zoom *= 0.9;
+		data->pos.zoom *= 0.7;
 	else if (keysym == '-')
-		data->pos.zoom /= 0.9;
+		data->pos.zoom /= 0.7;
 }
 
 int	on_keypress(int keysym, t_data *data1)
@@ -59,8 +59,7 @@ int	on_keypress(int keysym, t_data *data1)
 			printf("Pressed key: %d\n", keysym);
 			fflush(stdout);
 			input_translation(keysym, data);
-			iterate_screen(data, data->func);
-			ft_render(data);
+			iterate_screen(data);
 		}
 	}
 	return (keysym);
