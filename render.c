@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 21:54:30 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/12 17:16:53 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/12 18:26:59 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	iterate_screen(t_data *d)
 
 void	ft_put_pixel(t_img img, int x, int y, int color)
 {
-	int		offset;
+	int	offset;
 
 	offset = (y * img.line_len) + (x * (img.bpp / 8));
 	*(unsigned *)(img.pix + offset) = color;
