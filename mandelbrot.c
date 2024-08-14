@@ -6,11 +6,10 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:31:55 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/12 18:49:43 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/14 06:47:25 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
 #include "fractol.h"
 
 // función que usaría pero norminette no lo permite

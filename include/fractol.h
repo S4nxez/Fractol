@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:12 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/12 18:16:52 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/14 14:37:50 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 # include <stdlib.h>
 # include <math.h>
 # include <mlx.h>
+# include "ft_printf.h"
+# include "libft.h"
 
 # define WIDTH	800
-# define HEIGHT 800
+# define HEIGHT	800
 
 typedef struct pos
 {
@@ -54,11 +56,13 @@ typedef struct s_complex
 }	t_complex;
 
 void	draw_mandelbrot(t_data *data, int x, int y);
+void	draw_julia(t_data *data, int x, int y);
 int		on_keypress(int keysym, t_data *data1);
 int		close_on_escape(t_data *data);
 void	iterate_screen(t_data *data);
 void	ft_put_pixel(t_img img, int x, int y, int color);
 double	map(double ratio, double b1, double b2);
 double	calculate_ratio(double y, double a1, double a2);
+int	calc_mandelbrot_iterations(t_complex *z, t_complex *c, t_data *d);
 
 #endif

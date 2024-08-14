@@ -6,13 +6,45 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:49:43 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/12 21:44:10 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/14 14:35:58 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <X11/X.h>
 #include <X11/keysym.h>
+
+int	input_validator(void)
+{
+	char	*entrada;
+	int		ret;
+
+	ret = 0;
+	while (ret == 0)
+	{
+		entrada = get_next_line(1);
+		if (*entrada != '1' && *entrada != '2')
+		{
+			ft_printf("Entrada no válida, por favor, introduce 1 o 2\n");
+		}
+		else
+			ret = *entrada - '0';
+	}
+	return (ret);
+}
+
+int	main_menu(t_data *data)
+{
+	int	ret;
+
+	ft_printf("Selecciona el fractal: \n1.Mandelbrot\n2.Julia\n");
+	ret = input_validator();
+	if (ret == 1)
+		data->func = draw_mandelbrot;
+	else if (ret == 2)
+		data->func = draw_julia;
+	return (ret);
+}
 
 int	main(void)
 {
@@ -21,13 +53,13 @@ int	main(void)
 	dat = (t_data *)malloc(sizeof(t_data));
 	if (dat == NULL)
 		return (1);
+	main_menu(dat);
 	dat->mlx_ptr = mlx_init();
 	if (dat->mlx_ptr == NULL)
 		return (1);
 	dat->win_ptr = mlx_new_window(dat->mlx_ptr, WIDTH, HEIGHT, "Fracto'l");
 	if (dat->win_ptr == NULL)
 		return (1);
-	dat->func = draw_mandelbrot;
 	dat->pos.x = -0.735;
 	dat->pos.y = 0;
 	dat->pos.zoom = 1.35;
