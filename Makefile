@@ -25,7 +25,7 @@ OBJ_DIR = obj
 SRC_DIR = src
 
 # MiniLibX library path
-MLX_DIR = /home/s4nxez/minilibx_linux
+MLX_DIR = include/minilibx-linux
 MLX = $(MLX_DIR)/libmlx.a
 
 # Ft_printf library path
