@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:12 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/14 14:37:50 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/16 11:38:13 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,5 @@ void	iterate_screen(t_data *data);
 void	ft_put_pixel(t_img img, int x, int y, int color);
 double	map(double ratio, double b1, double b2);
 double	calculate_ratio(double y, double a1, double a2);
-int	calc_mandelbrot_iterations(t_complex *z, t_complex *c, t_data *d);
-
+int calc_mandelbrot_iterations(t_complex *z, t_complex *c, t_data *d);
 #endif

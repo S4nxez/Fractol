@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/08/14 16:23:22 by dansanc3          #+#    #+#              #
+#    Updated: 2024/08/14 16:37:09 by dansanc3         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # Name of the executable
 NAME = fractol
 
@@ -9,6 +21,8 @@ CFLAGS = -Wall -Wextra -Werror -g -I$(FRACTOL_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR) -
 
 # Fractol.h library path
 FRACTOL_DIR = include/
+OBJ_DIR = obj
+SRC_DIR = src
 
 # MiniLibX library path
 MLX_DIR = /home/s4nxez/minilibx_linux
@@ -23,16 +37,23 @@ LIBFT_DIR = include/libft/include
 LIBFT = $(LIBFT_DIR)/libft.a
 
 # Source files
-SRCS = mandelbrot.c window_settings.c render.c main.c julia.c
+SRC = mandelbrot window_settings render main julia
 
 # Object files
-OBJS = $(SRCS:.c=.o)
+OBJS = $(addprefix obj/, $(addsuffix .o, $(SRC)))
+
+
+SRCS = $(addsuffix .c, $(SRC))
 
 # Libraries
 LIBS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -Linclude/libft/ -lft -Linclude/ft_printf/ -lftprintf
 
 # Compilation rule
 all: $(NAME)
+
+# Regla para compilar los archivos objeto
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(FRACTOL_DIR)/fractol.h | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX) $(LIBS)
