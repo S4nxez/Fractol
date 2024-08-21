@@ -45,22 +45,27 @@ OBJS = $(addprefix obj/, $(addsuffix .o, $(SRC)))
 
 SRCS = $(addsuffix .c, $(SRC))
 
+OBJF =	.cache_exists
+
 # Libraries
 LIBS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -Linclude/libft/ -lft -Linclude/ft_printf/ -lftprintf
 
 # Compilation rule
-all: $(NAME)
+all: $(OBJF) $(NAME)
 
 # Regla para compilar los archivos objeto
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(FRACTOL_DIR)/fractol.h | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(FRACTOL_DIR)/fractol.h | $(OBJF)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX) $(LIBS)
 
+$(OBJF): 
+		@mkdir -p $(OBJ_DIR)/
+
 # Rule to clean object files
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJ_DIR)
 
 # Rule to clean all generated files
 fclean: clean

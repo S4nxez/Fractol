@@ -12,9 +12,6 @@ ft_tolower ft_toupper get_next_line
 
 OBJ_DIR = obj
 
-SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
-
-SRC  =	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJS =	$(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(SRC_FILES)))
 
 
@@ -24,14 +21,19 @@ ft_lstiter_bonus.c ft_lstmap_bonus.c
 OBJS_BNS = $(BNS:.c=.o)
 OBJS_BNS := $(addprefix $(OBJ_DIR)/, $(OBJS_BNS))
 
-all: $(NAME)
+OBJF		=	.cache_exists
 
-# Regla para compilar los archivos objeto
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDES)/libft.h | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+all: $(OBJF) $(NAME)
 
 $(NAME): $(OBJS)
-	ar -r $(NAME) $(OBJS)
+	ar -rc $(NAME) $(OBJS)
+
+# Regla para compilar los archivos objeto
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDES)/libft.h |$(OBJF)
+				@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJF): 
+		@mkdir -p $(OBJ_DIR)/
 
 bonus: $(OBJS) $(OBJS_BNS)
 	ar -rcs $(NAME) $(OBJS) $(OBJS_BNS)
@@ -40,7 +42,7 @@ $(SRC_DIR)/%.o : $(SRC_DIR)/%.c $(INCLUDES)/libft.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS) $(OBJS_BNS)
+	rm -rf $(OBJ_DIR)/
 
 fclean: clean
 	rm -f $(NAME)

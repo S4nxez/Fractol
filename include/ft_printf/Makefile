@@ -55,10 +55,10 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJF)
 			@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
 			@$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJF):
+$(OBJF):	
 			@mkdir -p $(OBJ_DIR)
 
-clean:
+clean:		
 			@$(RM) -rf $(OBJ_DIR)
 			@echo "$(BLUE)ft_printf object files cleaned!$(DEF_COLOR)"
 
