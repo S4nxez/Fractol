@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:49:43 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/14 14:35:58 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/23 17:12:09 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	input_validator(void)
 	while (ret == 0)
 	{
 		entrada = get_next_line(1);
-		if (*entrada != '1' && *entrada != '2')
+		if ((*entrada != '1' && *entrada != '2') || entrada[1]!= '\n')
 		{
 			ft_printf("Entrada no válida, por favor, introduce 1 o 2\n");
 		}
