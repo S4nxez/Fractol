@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:12 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/23 17:06:25 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/27 11:45:13 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ typedef struct s_data
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	char		input[256];
-	int			input_len;
 	void		(*func)(struct s_data *, int, int);
 	int			iter;
 	t_position	pos;

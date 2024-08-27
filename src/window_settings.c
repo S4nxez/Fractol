@@ -6,12 +6,11 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 22:04:00 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/14 14:36:39 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/27 11:34:03 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 
 // Función para cerrar la ventana al presionar Escape
 int	close_on_escape(t_data *data)
@@ -43,27 +42,18 @@ void	input_translation(int keysym, t_data *data)
 		data->iter -= 10;
 }
 
-int	on_keypress(int keysym, t_data *data1)
+int	on_keypress(int keysym, t_data *data)
 {
-	t_data	*data;
-
-	data = (t_data *)data1;
 	if (keysym == 65307)
 	{
 		close_on_escape(data);
 	}
 	else
 	{
-		if (data->input_len < (int) sizeof(data->input) - 1)
-		{
-			data->input[data->input_len] = (char)keysym;
-			data->input_len++;
-			data->input[data->input_len] = '\0';
-			printf("Pressed key: %d\n", keysym);
-			fflush(stdout);
-			input_translation(keysym, data);
-			iterate_screen(data);
-		}
+		ft_printf("Pressed key: %d\n", keysym);
+		input_translation(keysym, data);
+		iterate_screen(data);
+
 	}
 	return (keysym);
 }
