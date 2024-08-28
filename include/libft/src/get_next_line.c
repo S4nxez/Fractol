@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 17:04:56 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/14 10:30:31 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/28 18:49:32 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,11 @@ char	*obtain_remaining(char *basin_buffer)
 		count++;
 	if (basin_buffer[count] == '\n')
 		count++;
+	if (basin_buffer[count] == '\0')
+	{
+		free(basin_buffer);
+		return (NULL);
+	}
 	count2 = 0;
 	while (basin_buffer[count + count2] != '\0')
 		count2++;

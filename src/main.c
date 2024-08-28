@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:49:43 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/23 17:12:09 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/28 20:04:20 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,41 @@ int	input_validator(void)
 	while (ret == 0)
 	{
 		entrada = get_next_line(1);
-		if ((*entrada != '1' && *entrada != '2') || entrada[1]!= '\n')
+		if (!entrada)
+			return (1);
+		if ((*entrada != '1' && *entrada != '2') || entrada[1] != '\n')
 		{
 			ft_printf("Entrada no válida, por favor, introduce 1 o 2\n");
 		}
 		else
 			ret = *entrada - '0';
+		free(entrada);
 	}
 	return (ret);
 }
 
-int	main_menu(t_data *data)
+void	main_menu(t_data *data)
 {
-	int	ret;
+	int	input;
 
 	ft_printf("Selecciona el fractal: \n1.Mandelbrot\n2.Julia\n");
-	ret = input_validator();
-	if (ret == 1)
+	input = input_validator();
+	if (input == 1)
+	{
+		data->pos.x = -0.735;
+		data->pos.y = 0;
+		data->pos.zoom = 1.35;
+		data->iter = 50;
 		data->func = draw_mandelbrot;
-	else if (ret == 2)
+	}
+	else if (input == 2)
+	{
+		data->pos.x = 0;
+		data->pos.y = 0;
+		data->pos.zoom = 1.5;
+		data->iter = 50;
 		data->func = draw_julia;
-	return (ret);
+	}
 }
 
 int	main(void)
@@ -60,17 +74,17 @@ int	main(void)
 	dat->win_ptr = mlx_new_window(dat->mlx_ptr, WIDTH, HEIGHT, "Fracto'l");
 	if (dat->win_ptr == NULL)
 		return (1);
-	dat->pos.x = -0.735;
-	dat->pos.y = 0;
-	dat->pos.zoom = 1.35;
-	dat->iter = 50;
 	dat->img.img = mlx_new_image(dat->mlx_ptr, WIDTH, HEIGHT);
 	dat->img.pix = mlx_get_data_addr(dat->img.img, &dat->img.bpp,
 			&dat->img.line_len, &dat->img.endian);
 	iterate_screen(dat);
 	mlx_hook(dat->win_ptr, KeyRelease, KeyReleaseMask, on_keypress, dat);
+	mlx_mouse_hook(dat->win_ptr, mouse_hook, dat);
 	mlx_hook(dat->win_ptr, DestroyNotify, NoEventMask, close_on_escape, dat);
 	mlx_loop(dat->mlx_ptr);
+	mlx_destroy_image(dat->mlx_ptr, dat->img.img);
+	mlx_destroy_window(dat->mlx_ptr, dat->win_ptr);
+	mlx_destroy_display(dat->mlx_ptr);
 	free(dat);
 	return (0);
 }

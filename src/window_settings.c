@@ -6,18 +6,19 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 22:04:00 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/27 11:34:03 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/28 21:09:08 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-// Función para cerrar la ventana al presionar Escape
 int	close_on_escape(t_data *data)
 {
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	mlx_destroy_image(data->mlx_ptr, data->img.img);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
+	free(data);
 	exit(0);
 	return (0);
 }
@@ -53,7 +54,41 @@ int	on_keypress(int keysym, t_data *data)
 		ft_printf("Pressed key: %d\n", keysym);
 		input_translation(keysym, data);
 		iterate_screen(data);
-
 	}
 	return (keysym);
+}
+
+/*int	mouse_hook(int mouse_code, int x, int y, t_data *data)
+{
+	if (mouse_code == 4)
+	{
+		data->pos.zoom *= 0.7;
+	}
+	else if (mouse_code == 5)
+	{
+		data->pos.zoom /= 0.7;
+	}
+	data->pos.x += (data->pos.zoom * 0.5) * x;
+	data->pos.y += (data->pos.zoom * 0.5) * y;
+	iterate_screen(data);
+	return (mouse_code);
+}*/
+
+int	mouse_hook(int mouse_code, int x, int y, t_data *data)
+{
+	double	fractal_x = (x - WIDTH / 2) * data->pos.zoom / WIDTH + data->pos.x;
+	double	fractal_y = (y - HEIGHT / 2) * data->pos.zoom / HEIGHT + data->pos.y;
+
+	if (mouse_code == 4)
+	{
+		data->pos.zoom *= 0.7;
+	}
+	else if (mouse_code == 5)
+	{
+		data->pos.zoom /= 0.7;
+	}
+	data->pos.x = fractal_x - (x - WIDTH / 2) * data->pos.zoom / WIDTH;
+	data->pos.y = fractal_y - (y - HEIGHT / 2) * data->pos.zoom / HEIGHT;
+	iterate_screen(data);
+	return (0);
 }
