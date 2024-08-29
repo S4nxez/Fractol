@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 22:04:00 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/28 21:09:08 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:57:42 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,37 +58,20 @@ int	on_keypress(int keysym, t_data *data)
 	return (keysym);
 }
 
-/*int	mouse_hook(int mouse_code, int x, int y, t_data *data)
-{
-	if (mouse_code == 4)
-	{
-		data->pos.zoom *= 0.7;
-	}
-	else if (mouse_code == 5)
-	{
-		data->pos.zoom /= 0.7;
-	}
-	data->pos.x += (data->pos.zoom * 0.5) * x;
-	data->pos.y += (data->pos.zoom * 0.5) * y;
-	iterate_screen(data);
-	return (mouse_code);
-}*/
-
 int	mouse_hook(int mouse_code, int x, int y, t_data *data)
 {
-	double	fractal_x = (x - WIDTH / 2) * data->pos.zoom / WIDTH + data->pos.x;
-	double	fractal_y = (y - HEIGHT / 2) * data->pos.zoom / HEIGHT + data->pos.y;
-
 	if (mouse_code == 4)
-	{
 		data->pos.zoom *= 0.7;
-	}
 	else if (mouse_code == 5)
-	{
 		data->pos.zoom /= 0.7;
-	}
-	data->pos.x = fractal_x - (x - WIDTH / 2) * data->pos.zoom / WIDTH;
-	data->pos.y = fractal_y - (y - HEIGHT / 2) * data->pos.zoom / HEIGHT;
+	if (x < WIDTH / 2)
+		data->pos.x += data->pos.zoom * 0.2;
+	else
+		data->pos.x -= data->pos.zoom * 0.2;
+	if (y < HEIGHT / 2)
+		data->pos.y -= data->pos.zoom * 0.2;
+	else
+		data->pos.y += data->pos.zoom * 0.2;
 	iterate_screen(data);
-	return (0);
+	return (mouse_code);
 }
