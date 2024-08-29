@@ -64,7 +64,7 @@ int	mouse_hook(int mouse_code, int x, int y, t_data *data)
 		data->pos.zoom *= 0.7;
 	else if (mouse_code == 5)
 		data->pos.zoom /= 0.7;
-	if (x < WIDTH / 2)
+	if (x > WIDTH / 2)
 		data->pos.x += data->pos.zoom * 0.2;
 	else
 		data->pos.x -= data->pos.zoom * 0.2;
