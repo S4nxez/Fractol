@@ -23,36 +23,28 @@ int	close_on_escape(t_data *data)
 	return (0);
 }
 
-void	input_translation(int keysym, t_data *data)
-{
-	if (keysym == 'w')
-		data->pos.y -= data->pos.zoom * 0.2;
-	else if (keysym == 's')
-		data->pos.y += data->pos.zoom * 0.2;
-	else if (keysym == 'a')
-		data->pos.x -= data->pos.zoom * 0.2;
-	else if (keysym == 'd')
-		data->pos.x += data->pos.zoom * 0.2;
-	else if (keysym == '+')
-		data->pos.zoom *= 0.7;
-	else if (keysym == '-')
-		data->pos.zoom /= 0.7;
-	else if (keysym == 'n')
-		data->iter += 10;
-	else if (keysym == 'm' && data->iter > 10)
-		data->iter -= 10;
-}
-
 int	on_keypress(int keysym, t_data *data)
 {
 	if (keysym == 65307)
-	{
 		close_on_escape(data);
-	}
 	else
 	{
-		ft_printf("Pressed key: %d\n", keysym);
-		input_translation(keysym, data);
+		if (keysym == 'w')
+			data->pos.y -= data->pos.zoom * 0.2;
+		else if (keysym == 's')
+			data->pos.y += data->pos.zoom * 0.2;
+		else if (keysym == 'a')
+			data->pos.x -= data->pos.zoom * 0.2;
+		else if (keysym == 'd')
+			data->pos.x += data->pos.zoom * 0.2;
+		else if (keysym == '+')
+			data->pos.zoom *= 0.7;
+		else if (keysym == '-')
+			data->pos.zoom /= 0.7;
+		else if (keysym == 'n')
+			data->iter += 10;
+		else if (keysym == 'm' && data->iter > 10)
+			data->iter -= 10;
 		iterate_screen(data);
 	}
 	return (keysym);

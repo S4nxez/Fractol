@@ -62,5 +62,5 @@ void	ft_put_pixel(t_img img, int x, int y, int color);
 double	map(double ratio, double b1, double b2);
 double	calculate_ratio(double y, double a1, double a2);
 int		calc_iterations(t_complex *z, t_complex *c, t_data *d);
-int	mouse_hook(int mouse_code, int x, int y, t_data *data);
+int		mouse_hook(int mouse_code, int x, int y, t_data *data);
 #endif
