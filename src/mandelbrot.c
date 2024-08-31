@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:31:55 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/23 17:09:08 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/31 11:37:11 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ double	map(double ratio, double b1, double b2)
 	return (b1 + ratio * (b2 - b1));
 }
 
-int	calc_iterations(t_complex *z, t_complex *c, t_data *d)
+int	calc_bright(t_complex *z, t_complex *c, t_data *d)
 {
 	double	tmp;
 	int		i;
@@ -44,14 +44,13 @@ int	calc_iterations(t_complex *z, t_complex *c, t_data *d)
 		z->i = tmp;
 		i++;
 	}
-	return (i);
+	return (map(calculate_ratio(i, 0, d->iter), 0, 0x00FF00));
 }
 
 void	draw_mandelbrot(t_data *data, int x, int y)
 {
 	t_complex	z;
 	t_complex	c;
-	double		bright;
 
 	z.r = 0;
 	z.i = 0;
@@ -59,7 +58,5 @@ void	draw_mandelbrot(t_data *data, int x, int y)
 			data->pos.x + data->pos.zoom);
 	c.i = map(calculate_ratio(y, 0, HEIGHT), data->pos.y - data->pos.zoom,
 			data->pos.y + data->pos.zoom);
-	bright = map(calculate_ratio(calc_iterations(&z, &c, data),
-				0, data->iter), 0, 0x00FF00);
-	ft_put_pixel(data->img, x, y, bright);
+	ft_put_pixel(data->img, x, y, calc_bright(&z, &c, data));
 }
