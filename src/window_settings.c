@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 22:04:00 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/29 11:57:42 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/31 10:55:15 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,19 @@ int	mouse_hook(int mouse_code, int x, int y, t_data *data)
 {
 	if (mouse_code == 4)
 		data->pos.zoom *= 0.7;
-	else if (mouse_code == 5)
+	if (mouse_code == 5)
 		data->pos.zoom /= 0.7;
-	if (x > WIDTH / 2)
+	if (((mouse_code == 4 || mouse_code == 1) && x > WIDTH / 2)
+		|| (mouse_code == 5 && x < WIDTH / 2))
 		data->pos.x += data->pos.zoom * 0.2;
-	else
+	if (((mouse_code == 4 || mouse_code == 1) && x < WIDTH / 2)
+		|| (mouse_code == 5 && x > WIDTH / 2))
 		data->pos.x -= data->pos.zoom * 0.2;
-	if (y < HEIGHT / 2)
+	if (((mouse_code == 4 || mouse_code == 1) && (y < HEIGHT / 2))
+		|| (mouse_code == 5 && y > HEIGHT / 2))
 		data->pos.y -= data->pos.zoom * 0.2;
-	else
+	if (((mouse_code == 4 || mouse_code == 1) && (y > HEIGHT / 2))
+		|| (mouse_code == 5 && y < HEIGHT / 2))
 		data->pos.y += data->pos.zoom * 0.2;
 	iterate_screen(data);
 	return (mouse_code);
