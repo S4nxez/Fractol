@@ -6,7 +6,7 @@
 #    By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/14 16:23:22 by dansanc3          #+#    #+#              #
-#    Updated: 2024/08/14 16:37:09 by dansanc3         ###   ########.fr        #
+#    Updated: 2024/09/07 19:26:35 by dansanc3         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ LIBFT_DIR = include/libft/include
 LIBFT = $(LIBFT_DIR)/libft.a
 
 # Source files
-SRC = mandelbrot window_settings render main julia
+SRC = mandelbrot window_settings render main julia newton
 
 # Object files
 OBJS = $(addprefix obj/, $(addsuffix .o, $(SRC)))
@@ -60,7 +60,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(FRACTOL_DIR)/fractol.h | $(OBJF)
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX) $(LIBS)
 
-$(OBJF): 
+$(OBJF):
 		@mkdir -p $(OBJ_DIR)/
 
 # Rule to clean object files

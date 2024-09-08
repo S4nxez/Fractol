@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 18:31:55 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/08/31 11:37:11 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/08/31 12:19:10 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	calc_bright(t_complex *z, t_complex *c, t_data *d)
 		z->i = tmp;
 		i++;
 	}
-	return (map(calculate_ratio(i, 0, d->iter), 0, 0x00FF00));
+	return (map(calculate_ratio(i, 0, d->iter), 0, d->color[d->color_i]));
 }
 
 void	draw_mandelbrot(t_data *data, int x, int y)
