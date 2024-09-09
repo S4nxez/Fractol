@@ -6,13 +6,12 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:12 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/09/07 19:27:26 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/09/09 10:21:40 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# include <stdlib.h>
 # include <math.h>
 # include <mlx.h>
 # include "ft_printf.h"
