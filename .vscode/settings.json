@@ -2,5 +2,12 @@
 	"files.associations": {
 		"get_next_line.h": "c",
 		"fractol.h": "c"
-	}
+	},
+	"makefile.launchConfigurations": [
+		{
+			"cwd": "/home/s4nxez/fract0l",
+			"binaryPath": "/home/s4nxez/fract0l/fractol",
+			"binaryArgs": []
+		}
+	]
 }
