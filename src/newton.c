@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 19:27:02 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/09/15 12:18:29 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/09/29 17:00:00 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	main_loop(t_data *data, int x, int y, t_complex z)
 		return ;
 	i = 0;
 	while (i < data->iter)
-	{// z = z - Function(z) / Derivative(z)
+	{
 		z = iterate_z(z);
 		root_index = check_roots(z, roots, 0.000001);
 		if (root_index != -1)
@@ -89,18 +89,14 @@ void	main_loop(t_data *data, int x, int y, t_complex z)
 		i++;
 	}
 	free(roots);
-	ft_put_pixel(data->img, x, y, 0x000000); // Si no se encuentra una raíz, se asigna un color por defecto (negro)
+	ft_put_pixel(data->img, x, y, 0x000000);
 }
 
 void	draw_newton(t_data *data, int x, int y)
 {
 	t_complex	z;
-	double		zx;
-	double		zy;
 
-	zx = (x - WIDTH / 2.0) * 4.0 / WIDTH / data->pos.zoom + data->pos.x;
-	zy = (y - HEIGHT / 2.0) * 4.0 / HEIGHT / data->pos.zoom + data->pos.y;
-	z.i = zx;
-	z.r = zy;
+	z.r = (x - WIDTH / 2.0) * 4.0 / WIDTH * data->pos.zoom + data->pos.x;
+	z.i = (y - HEIGHT / 2.0) * 4.0 / HEIGHT * data->pos.zoom + data->pos.y;
 	main_loop(data, x, y, z);
 }

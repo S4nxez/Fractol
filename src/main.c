@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:49:43 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/09/10 16:25:41 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/09/29 16:55:06 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ void	main_menu(t_data *data)
 	data->color[1] = 67080;
 	data->color[2] = 0xFF0000;
 	data->color[3] = 0xFFFFFFFF;
-	data->pos.y = 0;
-	data->pos.x = 0;
 	data->iter = 50;
 	data->pos.zoom = 1;
 	if (input == 1)
@@ -63,7 +61,10 @@ void	main_menu(t_data *data)
 		data->func = draw_julia;
 	}
 	else if (input == 3)
+	{
+		data->iter = 20;
 		data->func = draw_newton;
+	}
 }
 
 int	main(void)

@@ -6,7 +6,7 @@
 #    By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/14 16:23:22 by dansanc3          #+#    #+#              #
-#    Updated: 2024/09/07 19:26:35 by dansanc3         ###   ########.fr        #
+#    Updated: 2024/09/26 16:23:43 by dansanc3         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ NAME = fractol
 CC = gcc
 
 # Compiler flags
-CFLAGS = -Wall -Wextra -Werror -g -I$(FRACTOL_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR) -I$(PRINTF_DIR)
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address -I$(FRACTOL_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR) -I$(PRINTF_DIR)
 
 # Fractol.h library path
 FRACTOL_DIR = include/
