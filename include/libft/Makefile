@@ -21,7 +21,7 @@ ft_lstiter_bonus.c ft_lstmap_bonus.c
 OBJS_BNS = $(BNS:.c=.o)
 OBJS_BNS := $(addprefix $(OBJ_DIR)/, $(OBJS_BNS))
 
-OBJF		=	.cache_exists
+OBJF	=	.cache_exists
 
 all: $(OBJF) $(NAME)
 
@@ -32,7 +32,7 @@ $(NAME): $(OBJS)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INCLUDES)/libft.h |$(OBJF)
 				@$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJF): 
+$(OBJF):
 		@mkdir -p $(OBJ_DIR)/
 
 bonus: $(OBJS) $(OBJS_BNS)

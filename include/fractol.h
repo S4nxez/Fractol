@@ -6,7 +6,7 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:54:12 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/09/09 10:21:40 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/10/16 10:06:51 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,5 @@ double	calculate_ratio(double y, double a1, double a2);
 int		calc_bright(t_complex *z, t_complex *c, t_data *d);
 int		mouse_hook(int mouse_code, int x, int y, t_data *data);
 void	draw_newton(t_data *data, int x, int y);
+int		input_validator(void);
 #endif

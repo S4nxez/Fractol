@@ -6,12 +6,13 @@
 #    By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/14 16:23:22 by dansanc3          #+#    #+#              #
-#    Updated: 2024/09/26 16:23:43 by dansanc3         ###   ########.fr        #
+#    Updated: 2024/10/16 10:08:31 by dansanc3         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Name of the executable
 NAME = fractol
+BONUS_NAME = fractol_bonus
 
 # Compiler
 CC = gcc
@@ -37,11 +38,16 @@ LIBFT_DIR = include/libft/include
 LIBFT = $(LIBFT_DIR)/libft.a
 
 # Source files
-SRC = mandelbrot window_settings render main julia newton
+SRC = mandelbrot window_settings render main julia no_bonus_input newton_bonus
+
+# Bonus files
+BONUS = input_bonus
 
 # Object files
 OBJS = $(addprefix obj/, $(addsuffix .o, $(SRC)))
 
+# Object files for bonus compilation
+BONUS_OBJS = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(filter-out no_bonus_input, $(SRC)) $(BONUS)))
 
 SRCS = $(addsuffix .c, $(SRC))
 
@@ -63,16 +69,23 @@ $(NAME): $(OBJS)
 $(OBJF):
 		@mkdir -p $(OBJ_DIR)/
 
+# Bonus rule
+bonus: $(OBJF) $(BONUS_NAME)
+
+# Rule to link the final executable for bonus compilation
+$(BONUS_NAME): $(BONUS_OBJS)
+	$(CC) $(CFLAGS) $(BONUS_OBJS) $(LIBS) -o $(BONUS_NAME)
+
 # Rule to clean object files
 clean:
 	rm -rf $(OBJ_DIR)
 
 # Rule to clean all generated files
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(BONUS_NAME)
 
 # Rule to recompile the entire project
 re: fclean all
 
 # Phony targets
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re

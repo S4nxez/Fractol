@@ -6,36 +6,13 @@
 /*   By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 18:49:43 by dansanc3          #+#    #+#             */
-/*   Updated: 2024/09/29 16:55:06 by dansanc3         ###   ########.fr       */
+/*   Updated: 2024/10/16 09:39:45 by dansanc3         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <X11/X.h>
 #include <X11/keysym.h>
-
-int	input_validator(void)
-{
-	char	*entrada;
-	int		ret;
-
-	ft_printf("Selecciona el fractal: \n1.Mandelbrot\n2.Julia\n3.Newton\n");
-	ret = 0;
-	while (ret == 0)
-	{
-		entrada = get_next_line(1);
-		if (!entrada)
-			return (1);
-		if ((*entrada < '1' || *entrada > '3') || entrada[1] != '\n')
-		{
-			ft_printf("Entrada no válida, introduce una opción del 1 al 3\n");
-		}
-		else
-			ret = *entrada - '0';
-		free(entrada);
-	}
-	return (ret);
-}
 
 void	main_menu(t_data *data)
 {
@@ -54,17 +31,16 @@ void	main_menu(t_data *data)
 		data->pos.x = -0.735;
 		data->pos.zoom = 1.35;
 		data->func = draw_mandelbrot;
+		return ;
 	}
 	else if (input == 2)
 	{
 		data->pos.zoom = 1.5;
 		data->func = draw_julia;
+		return ;
 	}
-	else if (input == 3)
-	{
-		data->iter = 20;
-		data->func = draw_newton;
-	}
+	data->iter = 20;
+	data->func = draw_newton;
 }
 
 int	main(void)
