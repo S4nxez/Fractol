@@ -6,7 +6,7 @@
 #    By: dansanc3 <dansanc3@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/14 16:23:22 by dansanc3          #+#    #+#              #
-#    Updated: 2024/10/16 10:08:31 by dansanc3         ###   ########.fr        #
+#    Updated: 2024/12/14 12:36:43 by dansanc3         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ BONUS_NAME = fractol_bonus
 CC = gcc
 
 # Compiler flags
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address -I$(FRACTOL_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR) -I$(PRINTF_DIR)
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address -I$(FRACTOL_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR_INCLUDE) -I$(PRINTF_DIR)
 
 # Fractol.h library path
 FRACTOL_DIR = include/
@@ -34,8 +34,9 @@ PRINTF_DIR = include/ft_printf/include
 PRINT = include/ft_printf/libftprintf.a
 
 # Libft library path
-LIBFT_DIR = include/libft/include
-LIBFT = $(LIBFT_DIR)/libft.a
+LIBFT_DIR_INCLUDE = include/libft/include
+LIBFT_DIR = include/libft
+LIBFT = $(LIBFT_DIR)libft.a
 
 # Source files
 SRC = mandelbrot window_settings render main julia no_bonus_input newton_bonus
@@ -57,7 +58,7 @@ OBJF =	.cache_exists
 LIBS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -Linclude/libft/ -lft -Linclude/ft_printf/ -lftprintf
 
 # Compilation rule
-all: $(OBJF) $(NAME)
+all: $(OBJF) $(LIBFT) $(NAME)
 
 # Regla para compilar los archivos objeto
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(FRACTOL_DIR)/fractol.h | $(OBJF)
@@ -69,8 +70,12 @@ $(NAME): $(OBJS)
 $(OBJF):
 		@mkdir -p $(OBJ_DIR)/
 
+# Rule to compile libft
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
+
 # Bonus rule
-bonus: $(OBJF) $(BONUS_NAME)
+bonus: $(OBJF) $(LIBFT) $(BONUS_NAME)
 
 # Rule to link the final executable for bonus compilation
 $(BONUS_NAME): $(BONUS_OBJS)
@@ -79,10 +84,12 @@ $(BONUS_NAME): $(BONUS_OBJS)
 # Rule to clean object files
 clean:
 	rm -rf $(OBJ_DIR)
+	$(MAKE) -C $(LIBFT_DIR) clean
 
 # Rule to clean all generated files
 fclean: clean
 	rm -f $(NAME) $(BONUS_NAME)
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
 # Rule to recompile the entire project
 re: fclean all
