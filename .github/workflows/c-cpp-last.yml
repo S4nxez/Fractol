@@ -1,0 +1,44 @@
+name: C CI for Fractol fixed
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    # Paso 1: Checkout del código, incluyendo submódulos
+    - name: Checkout code with submodules
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    # Paso 2: Instalación de dependencias requeridas
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install -y build-essential libx11-dev libxext-dev libbsd-dev
+
+    # Paso 3: Compilar la librería minilibx-linux
+    - name: Build minilibx-linux
+      working-directory: include/minilibx-linux
+      run: |
+        make
+
+    # Paso 4: Compilar la librería ft_printf
+    - name: Build ft_printf
+      working-directory: include/ft_printf
+      run: |
+        make
+
+    # Paso 5: Compilar el proyecto principal
+    - name: Build project
+      run: |
+        make
+
+    # Paso 6: Ejecutar el binario para verificar que funciona (opcional)
+    - name: Run executable (optional)
+      run: ./fractol
