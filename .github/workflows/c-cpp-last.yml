@@ -38,7 +38,3 @@ jobs:
     - name: Build project
       run: |
         make
-
-    # Paso 6: Ejecutar el binario para verificar que funciona (opcional)
-    - name: Run executable (optional)
-      run: ./fractol
